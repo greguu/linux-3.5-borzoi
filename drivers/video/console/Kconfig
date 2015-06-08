@@ -224,8 +224,20 @@ config FONT_10x18
 	  big letters. It fits between the sun 12x22 and the normal 8x16 font.
 	  If other fonts are too big or too small for you, say Y, otherwise say N.
 
+config FONT_TER8x14
+	bool "terminus 8x14 font (not supported by all drivers)" if FONTS
+	depends on FRAMEBUFFER_CONSOLE
+	help
+	    Say Y or N
+	    .
+config FONT_TER8x16
+	bool "terminus 8x16 font (not supported by all drivers)" if FONTS
+	depends on FRAMEBUFFER_CONSOLE
+	help
+	    Say Y or N.
+
 config FONT_AUTOSELECT
-	def_bool y
+	def_bool n
 	depends on FRAMEBUFFER_CONSOLE || SGI_NEWPORT_CONSOLE || STI_CONSOLE || USB_SISUSBVGA_CON
 	depends on !FONT_8x8
 	depends on !FONT_6x11
@@ -236,6 +248,8 @@ config FONT_AUTOSELECT
 	depends on !FONT_SUN8x16
 	depends on !FONT_SUN12x22
 	depends on !FONT_10x18
+	depends on !FONT_TER8x14
+	depends on !FONT_TER8x16
 	select FONT_8x16
 
 endmenu
